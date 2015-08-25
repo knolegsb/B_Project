@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,24 @@ namespace B_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string Version
+        {
+            get { return "BSMS Version : " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+        }
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }
